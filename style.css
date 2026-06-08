@@ -1,0 +1,39 @@
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;}
+  html,body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none;background:#03101c;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;}
+  #stage{position:fixed;inset:0;touch-action:none;cursor:crosshair;}
+  canvas{display:block;width:100%;height:100%;}
+  #hud{position:fixed;top:max(12px,env(safe-area-inset-top));left:12px;z-index:10;
+    background:linear-gradient(135deg,rgba(8,40,58,.82),rgba(6,24,38,.82));
+    border:1px solid rgba(120,210,255,.28);border-radius:14px;padding:11px 14px;
+    color:#dff3ff;font-size:13px;line-height:1.7;backdrop-filter:blur(6px);box-shadow:0 6px 22px rgba(0,0,0,.4);min-width:146px;}
+  #hud .row{display:flex;justify-content:space-between;gap:14px;}
+  #hud .k{color:#7fc6ee;}.v{font-weight:700;color:#fff;}.lv{color:#ffd56b;}.need{color:#8effc0;}
+  #hud .name{font-size:11px;color:#7fc6ee;margin-top:3px;opacity:.85;}
+  #hud .warn{font-size:11px;margin-top:4px;font-weight:700;display:none;}
+  #tip{position:fixed;bottom:max(16px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:10;
+    color:rgba(200,235,255,.62);font-size:12px;pointer-events:none;background:rgba(4,20,31,.4);padding:6px 14px;border-radius:20px;transition:opacity .6s;white-space:nowrap;}
+  #over{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;background:rgba(2,10,18,.7);backdrop-filter:blur(4px);}
+  #over .card{width:80%;max-width:320px;text-align:center;color:#eaf6ff;background:linear-gradient(160deg,#0c3247,#06192a);
+    border:1px solid rgba(120,210,255,.35);border-radius:20px;padding:28px 24px;box-shadow:0 18px 60px rgba(0,0,0,.6);animation:pop .35s cubic-bezier(.2,1.3,.4,1);}
+  @keyframes pop{from{transform:scale(.7);opacity:0;}to{transform:scale(1);opacity:1;}}
+  #over h2{font-size:24px;color:#ff7a6b;letter-spacing:2px;margin-bottom:6px;}
+  #over .sub{font-size:13px;color:#8fc8e6;margin-bottom:18px;}
+  #over .stat{display:flex;justify-content:space-around;margin:14px 0 22px;}
+  #over .stat div{font-size:12px;color:#7fc6ee;}.stat b{display:block;font-size:30px;color:#ffd56b;margin-top:4px;}
+  #restart{appearance:none;border:none;cursor:pointer;width:100%;padding:14px;border-radius:14px;font-size:17px;font-weight:700;color:#04141f;letter-spacing:2px;
+    background:linear-gradient(135deg,#7ff0c0,#46c2ff);box-shadow:0 8px 22px rgba(70,194,255,.4);}
+  #restart:active{transform:scale(.97);}
+  /* —— 底部虚拟摇杆拖盘 —— */
+  #joy{position:fixed;left:50%;top:0;width:132px;height:132px;margin-left:-66px;margin-top:-66px;z-index:14;
+    pointer-events:none;opacity:0;transition:opacity .25s, left .18s ease-out, top .18s ease-out;}
+  #joy.show{opacity:1;}
+  #joy.active{transition:opacity .25s;}
+  #joyBase{position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle at 50% 42%,rgba(20,70,100,.34),rgba(6,28,44,.30));
+    border:2px solid rgba(120,210,255,.40);box-shadow:0 6px 26px rgba(0,0,0,.4),inset 0 0 22px rgba(120,210,255,.12);}
+  #joyBase::before{content:"";position:absolute;inset:30%;border-radius:50%;border:1px dashed rgba(120,210,255,.28);}
+  #joyKnob{position:absolute;left:50%;top:50%;width:58px;height:58px;margin-left:-29px;margin-top:-29px;border-radius:50%;
+    background:radial-gradient(circle at 38% 34%,#7ff0c0,#46c2ff 65%,#2a8fd6);
+    border:1px solid rgba(255,255,255,.55);box-shadow:0 4px 14px rgba(70,194,255,.5),inset 0 2px 6px rgba(255,255,255,.45);
+    transform:translate(0,0);transition:transform .12s ease-out;}
+  #joy.active #joyKnob{transition:none;}
